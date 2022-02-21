@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><b>FilmKart</b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/carts/<%=@id%>">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/buys/<%= @id %>">Your Items</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">sign Out</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+<center>
+	<div class="shadow p-3 mb-5 bg-white rounded">
+		<img
+			src="https://image.tmdb.org/t/p/original/<%=@data['backdrop_path']%>"
+			alt="No poster"
+			width="300px"
+		/>
+		<h3><%=@data['original_title']%></h3>
+		<p><%=@data['overview']%></p>
+		<p><b> $<%= @data["vote_average"]%></b></p>
+		
+
+		<a class="btn btn-danger" href="/cart/<%=@data['id']%>/<%=@id%>/<%=@data['original_title']%>/<%= @data["vote_average"]%>%>" >Add To Cart</a>
+	</div>
+</center>
+<div class="container">
+	<div class="row">
+		<% @recs.each do |data| %>
+		<div class="col-lg-4 col-md-6 col-sm-12  card " >
+<center>
+<img class='shadow mt-3' src="https://image.tmdb.org/t/p/original/<%=data['backdrop_path']%>" alt="No Poster" width='200' href="/view/{{data['id']}}/{{id}}">
+<br>
+<a  >
+<b><%= data["original_title"] %></b>
+</a><br>
+<a  >
+<b> $<%= data["vote_average"] %></b>
+</a><br>
+<a  class="btn btn-primary mb-4" href=""> View</a>
+<a  class="btn btn-danger mb-4" href="/cart/<%=data['id']%>/<%=@id%>/<%=data['original_title']%>/<%= data["vote_average"]%>"> Add To Cart</a>
+</center>
+</div>
+		<% end %>
+	</div>
+</div>
